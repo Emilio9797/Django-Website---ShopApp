@@ -1,0 +1,20 @@
+{% extends "store/base.html" %}
+{% load static %}
+<!-- Basic -->
+
+{% block categories %}
+<br>
+<h1>
+    <center>Order completed!</center>
+
+</h1>
+<center><p>Your order number is: <strong>{{ order.id }}</strong></p></center>
+<center><p>In a short while you should recieve a confirmation email.</p></center>
+<center><p>Another, <strong>hand crafted</strong> will follow soon, containing details and expected shipping date, and Your PayPal payment details.</p></center>
+<br>
+<br>
+<form action="/">
+    <center><button type="submit" class="btn hvr-hover">BACK TO MAIN PAGE</button></center>
+</form>
+<br>
+{% endblock %}

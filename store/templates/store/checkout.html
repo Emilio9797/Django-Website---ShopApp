@@ -1,0 +1,95 @@
+{% extends "store/base.html" %}
+{% load static %}
+<!-- Basic -->
+
+{% block categories %}
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Checkout</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Billing address</h3>
+                            <form method="POST">
+                                {{form.as_p }}
+                                {% csrf_token %}
+                                <br>
+                                <br>
+                                <right><button type="submit" class="btn hvr-hover">Place Order!</button></right>
+                                <br>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="odr-box">
+                                <div class="title-left">
+                                    <h3>Shopping cart</h3>
+                                </div>
+                                <div class="rounded p-2 bg-light">
+                                    {% for item in cart %}
+                                    <div class="media mb-2">
+                                        <div class="media-body"> <a href="detail.html"> {{ item.item.name }}</a>
+                                            <div class="small text-muted">Price: {{ item.item.price }} $<span class="mx-2">|</span> Quantity: {{ item.quantity }} <span class="mx-2">|</span> Subtotal: {{ item.total_cost }}</div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    <br>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="order-box">
+                                <div class="title-left">
+                                    <h3>Your order</h3>
+                                </div>
+
+                                <hr class="my-1">
+                                <div class="d-flex">
+                                    <h4>Total: </h4>
+                                    <div class="ml-auto font-weight-bold"> {{ cart.get_total_price }} $</div>
+                                </div>
+                                <hr>
+                            </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+        <br><br>
+    <!-- End Cart -->
+
+{% endblock %}
+
+         <hr class="my-1">
+                                <div class="d-flex">
+                                    <h4>Subtotal</h4>
+                                    <div class="ml-auto font-weight-bold"> {{ cart.get_total_price }} $</div>
+                                </div>
+                                <div class="d-flex">
+                                    <h4>Delivery</h4>
+                                    <div class="ml-auto font-weight-bold"> {{ cart.get_total_price_with_delivery }} $</div>
+                                </div>
+
+                                <div class="d-flex gr-total">
+                                    <h5>Grand Total</h5>
+                                    <div class="ml-auto h5"> {{ cart.get_total_price }} $</div>
+                                </div>
+                                <hr>
